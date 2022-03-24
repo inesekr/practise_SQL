@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2022 at 11:31 AM
+-- Generation Time: Mar 24, 2022 at 03:11 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `employees`;
 CREATE TABLE `employees` (
   `employeeID` int(11) NOT NULL,
-  `Person` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `Role` varchar(30) NOT NULL,
   `Salary` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -39,9 +39,13 @@ CREATE TABLE `employees` (
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`employeeID`, `Person`, `Role`, `Salary`) VALUES
-(11, 7, 'junior developer', 1500),
-(15, 10, 'junior developer', 1500);
+INSERT INTO `employees` (`employeeID`, `ID`, `Role`, `Salary`) VALUES
+(20, 3, 'junior developer', 1500),
+(22, 1, 'Senior developer', 3000),
+(23, 2, 'General manager', 5000),
+(24, 6, 'Project manager', 2000),
+(25, 10, 'junior developer', 1500),
+(26, 11, 'junior developer', 1500);
 
 -- --------------------------------------------------------
 
@@ -69,7 +73,8 @@ INSERT INTO `persons` (`ID`, `Name`, `LastName`, `DateOfBirth`) VALUES
 (7, 'Billy', 'Idol', '1999-11-30'),
 (8, 'Joe', 'Miller', '2001-03-23'),
 (9, 'Bruce', 'Winter', '1965-02-28'),
-(10, 'Kevin', 'Malcolm', '1975-08-03');
+(10, 'Kevin', 'Malcolm', '1975-08-03'),
+(11, 'Leo', 'West', '1998-03-17');
 
 --
 -- Indexes for dumped tables
@@ -80,7 +85,7 @@ INSERT INTO `persons` (`ID`, `Name`, `LastName`, `DateOfBirth`) VALUES
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`employeeID`),
-  ADD KEY `ID` (`Person`);
+  ADD KEY `ID` (`ID`);
 
 --
 -- Indexes for table `persons`
@@ -96,13 +101,13 @@ ALTER TABLE `persons`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `employeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `employeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `persons`
 --
 ALTER TABLE `persons`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -112,7 +117,7 @@ ALTER TABLE `persons`
 -- Constraints for table `employees`
 --
 ALTER TABLE `employees`
-  ADD CONSTRAINT `ID` FOREIGN KEY (`Person`) REFERENCES `persons` (`ID`);
+  ADD CONSTRAINT `ID` FOREIGN KEY (`ID`) REFERENCES `persons` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

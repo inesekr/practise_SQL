@@ -123,7 +123,7 @@ isset($_POST['submit'])
             <option name="ID" property= "ID">Select a person by ID</option>
            
             <?php foreach ($result_person as $key => $value) { ?>
-                <option value="<?= $value['ID'] ?>"><?= $value['Name'], ' ', $value['LastName'] ?></option>
+                <option value="<?= $value['ID'] ?>"><?= $value['ID'], '--', $value['Name'], ' ', $value['LastName'] ?></option>
             <?php } ?>
         
 			</select>           
