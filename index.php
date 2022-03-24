@@ -25,14 +25,14 @@ $sql_person = "SELECT * FROM persons";
 	
     if (
 isset($_POST['submit'])
-        // && isset ($_POST["Person"]) && $_POST["Person"] !== ""
-        // && isset($_POST["Role"]) && $_POST["Role"] !== ""
-        // && isset($_POST["Salary"]) && $_POST["Salary"] !== ""
+        && isset ($_POST["Person"]) && $_POST["Person"] !== ""
+        && isset($_POST["Role"]) && $_POST["Role"] !== ""
+        && isset($_POST["Salary"]) && $_POST["Salary"] !== ""
 ) :
    
 
-    $sql_employee = "INSERT INTO employees (Person, Role, Salary) VALUES ('{$_POST["Person"]}', '{$_POST["Role"]}' , '{$_POST["Salary"]}')";
-    $con->query($sql_employee);
+    $insert = "INSERT INTO employees (Person, Role, Salary) VALUES ('{$_POST["Person"]}', '{$_POST["Role"]}' , '{$_POST["Salary"]}')";
+    $con->query($insert);
     endif;
 
    	?>
@@ -121,13 +121,10 @@ isset($_POST['submit'])
         <label for="Person"> Person</label>
         <select name="Person" id="Person">
             <option>Select a person by ID</option>
-            <?php
-           foreach($result_select as $key => $value):
-           
-            ?>
+            <?php foreach($result_select as $key => $value):?>
+                
+            <option value="<?=$value["ID"];?>"></option>
             
-                <option value="<?=$value['Person'];?>"></option>
-                <?php
            
            endforeach;   
             ?>
