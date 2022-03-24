@@ -1,6 +1,6 @@
 <?php
 
-$con = new mysqli("localhost", "root", "", "practise");
+$con = new mysqli("localhost", "root", "", "persons");
 if ($con->connect_error)
     die("Connection error" . $con->connect_error);
 
@@ -25,13 +25,13 @@ $sql_person = "SELECT * FROM persons";
 	
     if (
 isset($_POST['submit'])
-        && isset ($_POST["Person"]) && $_POST["Person"] !== ""
+        && isset ($_POST["ID"]) && $_POST["ID"] !== ""
         && isset($_POST["Role"]) && $_POST["Role"] !== ""
         && isset($_POST["Salary"]) && $_POST["Salary"] !== ""
 ) :
    
 
-    $insert = "INSERT INTO employees (Person, Role, Salary) VALUES ('{$_POST["Person"]}', '{$_POST["Role"]}' , '{$_POST["Salary"]}')";
+    $insert = "INSERT INTO employees (ID, Role, Salary) VALUES ('{$_POST["ID"]}', '{$_POST["Role"]}' , '{$_POST["Salary"]}')";
     $con->query($insert);
     endif;
 
@@ -80,7 +80,7 @@ isset($_POST['submit'])
                 <h3>employeeID</h3>
             </th>
             <th>
-                <h3>Person</h3>
+                <h3>ID</h3>
             </th>
             <th>
                 <h3>Role</h3>
@@ -94,7 +94,7 @@ isset($_POST['submit'])
         ?>
             <tr>
                 <td><?= $row["employeeID"] ?></td>
-				<td><?= $row["Person"] ?></td>
+				<td><?= $row["ID"] ?></td>
                 <td><?= $row["Role"] ?></td>
 				<td><?= $row["Salary"] ?></td>
             </tr>
@@ -118,23 +118,21 @@ isset($_POST['submit'])
 <br>
 
     <form method="POST">
-        <label for="Person"> Person</label>
-        <select name="Person" id="Person">
-            <option>Select a person by ID</option>
-            <?php $sql = mysql_query("SELECT * FROM persons");
-                while ($row=mysql_fetch_array($sql)){
-                    echo "<option value="ID">"</option>
-                  }
-                ?>
+        <label for="ID">ID</label>
+        <select name="ID" id="ID">
+            <option name="ID" property= "ID">Select a person by ID</option>
+           
+            <?php foreach ($result_person as $key => $value) { ?>
+                <option value="<?= $value['ID'] ?>"><?= $value['Name'], ' ', $value['LastName'] ?></option>
+            <?php } ?>
         
 			</select>           
-            
-        
+                    
         <label for="Role"> Role</label>
         <input id="Role" name="Role">
         <label for="Salary"> Salary</label>
         <input id="Salary" name="Salary">
-        <button type="submit">Submit</button>
+        <button type="submit" name="submit">submit</button>
 
         </form>
 
