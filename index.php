@@ -121,15 +121,15 @@ isset($_POST['submit'])
         <label for="Person"> Person</label>
         <select name="Person" id="Person">
             <option>Select a person by ID</option>
-            <?php foreach($result_select as $key => $value):?>
-                
-            <option value="<?=$value["ID"];?>"></option>
+            <?php $sql = mysql_query("SELECT * FROM persons");
+                while ($row=mysql_fetch_array($sql)){
+                    echo "<option value="ID">"</option>
+                  }
+                ?>
+        
+			</select>           
             
-           
-           endforeach;   
-            ?>
-			</select>
-
+        
         <label for="Role"> Role</label>
         <input id="Role" name="Role">
         <label for="Salary"> Salary</label>
